@@ -1,6 +1,5 @@
 import Vue from "vue";
-//import "./plugins/vuetify";
-import vuetify from "./plugins/vuetify";
+import "./plugins/vuetify";
 import App from "./App.vue";
 import store from "./store";
 import FjIcon from "./components/fj-icon";
@@ -69,6 +68,5 @@ Vue.use(GetSockets, { store });
 
 new Vue({
   store,
-  vuetify,
   render: h => h(App)
 }).$mount("#app");

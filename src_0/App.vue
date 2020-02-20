@@ -27,7 +27,7 @@
         <fj-btn text="test" @click="pressed" img="logo.svg"></fj-btn>
       </v-flex>
     </v-layout>
-    <fj-data-table :items="items" :columns="columns" label="myData Table" class="elevation-1" />
+    <fj-data-table :items="items" :columns="columns" label="myData Table" class="elevation-1"/>
     <fj-data-object :item="items[0]" :attributes="columns"></fj-data-object>
   </fj-config>
 </template>
@@ -151,8 +151,7 @@ export default {
   },
   computed: {
     ...mapGetters(["format"]),
-    ...mapState({ config: "conf" }),
-    ...mapState(["connected"])
+    ...mapState({ config: "conf", connected: "connected" })
     //    ...mapGetters(["connected"])
   }
 };
