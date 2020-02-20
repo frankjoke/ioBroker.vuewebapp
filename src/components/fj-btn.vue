@@ -1,10 +1,9 @@
 <template>
-  <v-tooltip v-bind="this_attrs">
+  <v-tooltip v-if="!!tooltip" v-bind="this_attrs">
     <template v-slot:activator="{ on }">
       <v-btn
         :icon="!text"
-        :text="flat"
-        v-on="on"
+      v-on="on"
         @click="$emit('click')"
         :disabled="disabled"
         v-bind="next_attrs"
@@ -13,17 +12,25 @@
         {{text ? '&nbsp;'+text : ''}}
       </v-btn>
     </template>
-    <span>
-      <slot></slot>
-    </span>
+    <span>{{tooltip}}</span>
   </v-tooltip>
+        <v-btn v-else 
+        :icon="!text"
+        @click="$emit('click')"
+        :disabled="disabled"
+        v-bind="next_attrs"
+      >
+        <fj-icon v-if="!!img" :img="img" />
+        {{text ? '&nbsp;'+text : ''}}
+      </v-btn>
+
 </template>
 
 <script>
 import attrsMixin from "../mixins/attrs";
 
 export default {
-  name: "s",
+  name: "fj-btn",
   mixins: [attrsMixin],
   data() {
     //    return { my_attrs: "top,bottom,left,right" };
@@ -35,6 +42,10 @@ export default {
       default: ""
     },
     text: {
+      type: String,
+      default: ""
+    },
+    tooltip: {
       type: String,
       default: ""
     },

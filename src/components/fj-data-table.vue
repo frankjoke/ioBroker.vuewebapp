@@ -9,12 +9,12 @@
         <v-icon>mdi-playlist-plus</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-data-table v-bind="this_attrs" :headers="icolumns" :items="items">
+    <v-data-table dense v-bind="this_attrs" :headers="icolumns" :items="items">
       <template v-slot:items="iprops" height="auto">
         <tr class="alternate">
           <td v-for="column in icolumns" :key="column.id">
             <v-icon
-              v-if="column.name=='_delete_'"
+              v-if="column.name=='-'"
               dark
               color="error"
               @click.stop="itemDelete(iprops.index)"
@@ -140,23 +140,22 @@ export default {
       let i = Object.assign({}, item);
       if (edit) i.edit = true;
       if (candelete) i.candelete = true;
-      if (!i.text && i.value) i.text = helper.startCase(i.value);
+      if (!i.name && i.value) i.name = helper.startCase(i.value);
       i.sortable = false;
       return i;
     });
     if (candelete)
       this.icolumns.push({
-        name: "_delete_",
-        text: "-",
+        name: "-",
         sortable: false,
         width: "1%"
       });
-
+    console.log(this.icolumns);
     //    this.snackShow("Started.");
   }
 };
 </script>
-
+/* 
 <style>
 th.column,
 table.v-table thead th {
@@ -175,4 +174,4 @@ tr.alternate:nth-child(even) {
   /*  */
   margin-top: 4px;
 }
-</style>
+</style> */

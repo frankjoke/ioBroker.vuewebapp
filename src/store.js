@@ -10,7 +10,7 @@ export default new Vuex.Store({
     changed: false,
     formatConf: [
       {
-        text: "ScolumnA",
+        name: "ScolumnA",
         value: "a",
         type: "chips",
         edit: false,
@@ -20,7 +20,7 @@ export default new Vuex.Store({
         sm4: true
       },
       {
-        text: "NcolumnA",
+        name: "NcolumnA",
         value: "aa",
         type: "number",
         width: "10%",
@@ -32,7 +32,7 @@ export default new Vuex.Store({
       },
       { divider: true },
       {
-        text: "Bool",
+        name: "Bool",
         value: "b",
         type: "boolean",
         width: "2%",
@@ -44,7 +44,7 @@ export default new Vuex.Store({
       },
       "spacer",
       {
-        text: "Switch",
+        name: "Switch",
         value: "bb",
         type: "switch",
         sm3: true,
@@ -54,7 +54,7 @@ export default new Vuex.Store({
       },
       "vertical",
       {
-        text: "C%",
+        name: "C%",
         value: "c",
         type: "password",
         width: "10%",
@@ -63,7 +63,7 @@ export default new Vuex.Store({
         placeholder: "Teset"
       },
       {
-        text: "Select",
+        name: "Select",
         value: "s",
         select: ["one", "two", "three"],
         chips: true,
@@ -72,19 +72,19 @@ export default new Vuex.Store({
       },
       {
         type: "table",
-        text: "Table1",
+        name: "Table1",
         value: "table1",
         sm12: true,
         columns: [{ value: "aa" }, { value: "bb" }, { value: "cc" }]
       },
       {
         type: "table",
-        text: "Table2",
+        name: "Table2",
         value: "table2",
         sm12: true,
         columnss: [
-          { value: "a", text: "A" },
-          { value: "b", text: "B" },
+          { value: "a", name: "A" },
+          { value: "b", name: "B" },
           { value: "camel-case_test rest" }
         ]
       }

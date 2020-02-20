@@ -5,8 +5,7 @@
         <fj-btn
           text="Button"
           img="logo.png"
-          @click="actionConnected(!connected)"
-        >Translate me later!</fj-btn>
+          @click="actionConnected(!connected)" tooltip="Translate me later!"></fj-btn>
       </v-flex>
       <v-flex sm3>
         <v-btn color="primary" @click="actionConnected(!connected)">
@@ -47,7 +46,7 @@ export default {
     return {
       columns: [
         {
-          text: "ScolumnA",
+          name: "ScolumnA",
           value: "a",
           type: "chips",
           edit: false,
@@ -57,7 +56,7 @@ export default {
           sm4: true
         },
         {
-          text: "NcolumnA",
+          name: "NcolumnA",
           value: "aa",
           type: "number",
           width: "10%",
@@ -68,7 +67,7 @@ export default {
           placeholder: "Numbers in seconds"
         },
         {
-          text: "Bool",
+          name: "Bool",
           value: "b",
           type: "boolean",
           width: "2%",
@@ -79,7 +78,7 @@ export default {
           sortable: false
         },
         {
-          text: "Switch",
+          name: "Switch",
           value: "bb",
           type: "switch",
           sm3: true,
@@ -88,7 +87,7 @@ export default {
           color: "success"
         },
         {
-          text: "C%",
+          name: "C%",
           value: "c",
           width: "10%",
           sm3: true,
@@ -96,7 +95,7 @@ export default {
           placeholder: "Teset"
         },
         {
-          text: "Select",
+          name: "Select",
           value: "s",
           select: ["one", "two", "three"],
           chips: true,

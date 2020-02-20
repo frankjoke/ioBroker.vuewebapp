@@ -12,14 +12,15 @@
             :key="mindex"
             @click="menuitem = mindex"
             :img="mitem.icon"
-            :text="mitem.text"
-          >{{mitem.tooltip}}</fj-btn>
+            :text="mitem.name"
+            :tooltip="mitem.tooltip"
+            />
         </template>
-        <fj-btn img="mdi-content-save" text="Save" :disabled="!changed">Save config now</fj-btn>
-        <fj-btn img="mdi-file-restore" text="Save+close">Save and close config</fj-btn>
-        <fj-btn img="mdi-download">Download config to file</fj-btn>
-        <fj-btn img="mdi-upload">Upload config from file</fj-btn>
-        <fj-btn img="mdi-close" text="cancel" @click="close">Close and cancel edit</fj-btn>
+        <fj-btn img="mdi-content-save" text="Save" :disabled="!changed" tooltip="Save config now"></fj-btn>
+        <fj-btn img="mdi-file-restore" text="Save+close" tooltip="Save and close config"></fj-btn>
+        <fj-btn img="mdi-download" tooltip="Download config to file"></fj-btn>
+        <fj-btn img="mdi-upload" tooltip="Upload config from file"></fj-btn>"
+        <fj-btn img="mdi-close" text="cancel" @click="close" tooltip="Close and cancel edit"></fj-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-content>
@@ -102,7 +103,7 @@ export default {
         console.log("something changed");
         this.$nextTick(() => this.checkConf());
         //        this.$emit("changed", true);
-        //        this.$store.state.changed = true;
+        this.$store.state.changed = true;
       },
 
       deep: true

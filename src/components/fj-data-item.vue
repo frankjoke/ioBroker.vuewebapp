@@ -64,7 +64,7 @@ export default {
     return {
       c: {},
       edit: false,
-      my_attrs: /^(value|type|select|columns|edit|name|default|text|sortable|width)$/
+      my_attrs: /^(value|type|select|columns|edit|name|default|name|sortable|width)$/
     };
   },
   methods: {

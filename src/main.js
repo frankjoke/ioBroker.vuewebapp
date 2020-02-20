@@ -19,6 +19,7 @@ import VueSocketio from "vue-socket.io-extended";
 Vue.prototype.$filters = Vue.options.filters;
 
 Vue.config.productionTip = false;
+Vue.config.devtools = true;
 
 Vue.component("FjIcon", FjIcon);
 Vue.component("FjBtn", FjBtn);
