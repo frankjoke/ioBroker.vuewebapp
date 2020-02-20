@@ -19,7 +19,7 @@
               color="error"
               @click.stop="itemDelete(iprops.index)"
             >mdi-delete-forever</v-icon>
-            <fj-data-item v-else :item="iprops.item" :attributes="column"/>
+            <fj-data-item v-else :item="iprops.item" :attributes="column" />
           </td>
         </tr>
       </template>

@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on }">
       <v-btn
         :icon="!text"
-        :xxxx="'flat'"
+        :text="flat"
         v-on="on"
         @click="$emit('click')"
         :disabled="disabled"
@@ -23,7 +23,7 @@
 import attrsMixin from "../mixins/attrs";
 
 export default {
-  name: "fj-btn",
+  name: "s",
   mixins: [attrsMixin],
   data() {
     //    return { my_attrs: "top,bottom,left,right" };

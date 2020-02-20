@@ -121,7 +121,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    connected: state => state.connected,
+    //    connected: state => state.connected,
     format: state => state.formatConf,
     config: state => state.conf
   }
