@@ -47,15 +47,19 @@ Vue.filter("startcase", function(value) {
 
 const GetSockets = {
   install: function(Vue, options = {}) {
+    console.log("install send event:", options);
     Vue.prototype.$ioemit = function(ev, ...data) {
+      console.log("send event:", ev, ...data);
       return new Promise((res, rej) => {
         let tout = setTimeout(
           () =>
             rej(new Error("Timeout SocketIo Response to " + ev), (tout = null)),
           options.timeout || 5000
         );
-        Vue.prototype.$socket.emit(ev, ...data, (err, result) => {
+        Vue.prototype.$socket.client.emit(ev, ...data, (err, result) => {
           if (tout) clearTimeout(tout);
+          else return rej("Timeout");
+          tout = null;
           if (err || !result) rej(err ? err : "No result");
           else res(result);
         });

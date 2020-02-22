@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { deepStrictEqual } from "assert";
+//import { deepStrictEqual } from "assert";
 
 Vue.use(Vuex);
 
@@ -10,7 +10,7 @@ export default new Vuex.Store({
     changed: false,
     formatConf: [
       {
-        name: "ScolumnA",
+        text: "ScolumnA",
         value: "a",
         type: "chips",
         edit: false,
@@ -20,7 +20,7 @@ export default new Vuex.Store({
         sm4: true
       },
       {
-        name: "NcolumnA",
+        text: "NcolumnA",
         value: "aa",
         type: "number",
         width: "10%",
@@ -32,7 +32,7 @@ export default new Vuex.Store({
       },
       { divider: true },
       {
-        name: "Bool",
+        text: "Bool",
         value: "b",
         type: "boolean",
         width: "2%",
@@ -44,7 +44,7 @@ export default new Vuex.Store({
       },
       "spacer",
       {
-        name: "Switch",
+        text: "Switch",
         value: "bb",
         type: "switch",
         sm3: true,
@@ -54,7 +54,7 @@ export default new Vuex.Store({
       },
       "vertical",
       {
-        name: "C%",
+        text: "C%",
         value: "c",
         type: "password",
         width: "10%",
@@ -63,7 +63,7 @@ export default new Vuex.Store({
         placeholder: "Teset"
       },
       {
-        name: "Select",
+        text: "Select",
         value: "s",
         select: ["one", "two", "three"],
         chips: true,
@@ -72,14 +72,14 @@ export default new Vuex.Store({
       },
       {
         type: "table",
-        name: "Table1",
+        text: "Table1",
         value: "table1",
         sm12: true,
         columns: [{ value: "aa" }, { value: "bb" }, { value: "cc" }]
       },
       {
         type: "table",
-        name: "Table2",
+        text: "Table2",
         value: "table2",
         sm12: true,
         columnss: [

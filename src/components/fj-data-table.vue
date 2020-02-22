@@ -10,11 +10,11 @@
       </v-btn>
     </v-toolbar>
     <v-data-table dense v-bind="this_attrs" :headers="icolumns" :items="items">
-      <template v-slot:items="iprops" height="auto">
+       <template v-slot:item="iprops" height="auto">
         <tr class="alternate">
           <td v-for="column in icolumns" :key="column.id">
             <v-icon
-              v-if="column.name=='-'"
+              v-if="column.text=='-'"
               dark
               color="error"
               @click.stop="itemDelete(iprops.index)"
@@ -23,7 +23,7 @@
           </td>
         </tr>
       </template>
-    </v-data-table>
+  </v-data-table>
     <fj-dialog-question v-model="dialog" @Ok="itemDelete(true)">
       <fj-data-object v-if="ditem" :item="ditem" :attributes="icolumns"></fj-data-object>
     </fj-dialog-question>
@@ -140,22 +140,22 @@ export default {
       let i = Object.assign({}, item);
       if (edit) i.edit = true;
       if (candelete) i.candelete = true;
-      if (!i.name && i.value) i.name = helper.startCase(i.value);
+      if (!i.text && i.value) i.text = helper.startCase(i.value);
       i.sortable = false;
       return i;
     });
     if (candelete)
       this.icolumns.push({
-        name: "-",
+        text: "-",
         sortable: false,
         width: "1%"
       });
     console.log(this.icolumns);
+    console.log(this.items);
     //    this.snackShow("Started.");
   }
 };
 </script>
-/* 
 <style>
 th.column,
 table.v-table thead th {
@@ -174,4 +174,4 @@ tr.alternate:nth-child(even) {
   /*  */
   margin-top: 4px;
 }
-</style> */
+</style>

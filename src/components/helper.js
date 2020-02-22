@@ -16,8 +16,8 @@ const helper = {
     if (typeof f == "string") f = { value: f };
     let i = Object.assign({}, f);
     let typ = helper.getType(v);
-    if (!i.value && i.name) i.value = i.name;
-    if (!i.name) i.name = helper.startCase(i.value);
+    if (!i.value && i.text) i.value = i.text;
+    if (!i.text) i.text = helper.startCase(i.value);
     //    if (!i.id) i.id = i.text + "_" + i.value;
     if (!i.type && i.select) i.type = "select";
     if (!i.type)

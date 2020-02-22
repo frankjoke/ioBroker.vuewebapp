@@ -12,7 +12,7 @@
             :key="mindex"
             @click="menuitem = mindex"
             :img="mitem.icon"
-            :text="mitem.name"
+            :text="mitem.text"
             :tooltip="mitem.tooltip"
             />
         </template>

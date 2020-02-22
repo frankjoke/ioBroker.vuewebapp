@@ -38,7 +38,7 @@ export default {
     //    console.log("config:", this.config);
     this.addall_attrs(this.format);
     this.next_attrs.edit = true;
-    this.next_attrs.label = this.next_attrs.label || this.next_attrs.name;
+    this.next_attrs.label = this.next_attrs.label || this.next_attrs.text;
     //    console.log("this:", this.this_attrs);
     //    console.log("next:", this.next_attrs);
     //    console.log(this.menu);
