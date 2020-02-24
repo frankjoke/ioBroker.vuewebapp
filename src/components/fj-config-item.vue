@@ -11,10 +11,11 @@
 
 <script>
 import attrsMixin from "../mixins/attrs";
+import helperMixin from "../mixins/helper";
 
 export default {
   name: "fj-config-item",
-  mixins: [attrsMixin],
+  mixins: [attrsMixin, helperMixin],
 
   props: {
     config: {
@@ -38,7 +39,7 @@ export default {
     //    console.log("config:", this.config);
     this.addall_attrs(this.format);
     this.next_attrs.edit = true;
-    this.next_attrs.label = this.next_attrs.label || this.next_attrs.text;
+    this.next_attrs.label = this.t(this.next_attrs.label || this.next_attrs.text);
     //    console.log("this:", this.this_attrs);
     //    console.log("next:", this.next_attrs);
     //    console.log(this.menu);

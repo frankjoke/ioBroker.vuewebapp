@@ -9,10 +9,10 @@
         v-bind="next_attrs"
       >
         <fj-icon v-if="!!img" :img="img" />
-        {{text ? '&nbsp;'+text : ''}}
+        {{text | tt | beginsp}}
       </v-btn>
     </template>
-    <span>{{tooltip}}</span>
+    <span>{{tooltip | tt }}</span>
   </v-tooltip>
         <v-btn v-else 
         :icon="!text"
@@ -21,13 +21,14 @@
         v-bind="next_attrs"
       >
         <fj-icon v-if="!!img" :img="img" />
-        {{text ? '&nbsp;'+text : ''}}
+        {{text | tt | beginsp}}
       </v-btn>
 
 </template>
 
 <script>
 import attrsMixin from "../mixins/attrs";
+// import translateMixin from "../mixins/translate";
 
 export default {
   name: "fj-btn",
@@ -51,12 +52,8 @@ export default {
     },
     disabled: false
   },
-  methods: {},
-  computed: {
-    //    ...mapGetters(["connected"])
-  },
   created() {
-    //    console.log(attrsMixin);
+    console.log(this);
     if (!Object.keys(this.this_attrs).length) this.this_attrs["bottom"] = true;
   }
 };

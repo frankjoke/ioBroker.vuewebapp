@@ -5,6 +5,8 @@ if there is a value named 'my_attrs' use it to filer
 
 // @vue/component
 
+import {translate} from "../plugins/dictionary";
+
 export default {
   inheritAttrs: false,
   data() {
@@ -47,6 +49,9 @@ export default {
         this.this_attrs,
         this.next_attrs
       );
+    },
+    t(what,...args) {
+      translate(what, ...args);
     }
   },
   computed: {

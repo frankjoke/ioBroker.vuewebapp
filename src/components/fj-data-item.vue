@@ -51,11 +51,11 @@
 
 <script>
 import attrsMixin from "../mixins/attrs";
-import helper from "./helper";
+import helperMixin from "../mixins/helper";
 
 export default {
   name: "fj-data-item",
-  mixins: [attrsMixin],
+  mixins: [attrsMixin,helperMixin],
   props: {
     item: { required: true },
     attributes: { required: false }
@@ -84,7 +84,7 @@ export default {
     let c = Object.assign({}, this.attributes);
     if (typeof c == "string") c = { value: c };
     else if (typeof c !== "object") c = { value: "value" };
-    let i = helper.getFormat(this.item[c.value], c);
+    let i = this.getFormat(this.item[c.value], c);
     if (this.this_attrs.edit || i.edit) this.edit = true;
     if (i.type === "number" && !i.align && !this.edit) i.align = "right";
     if (i.type === "number" && !i.rules && this.edit)

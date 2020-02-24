@@ -8,6 +8,9 @@ export default new Vuex.Store({
   state: {
     connected: false,
     changed: false,
+    dictionary: {},
+    lang: 'en',
+    
     formatConf: [
       {
         text: "ScolumnA",
@@ -105,7 +108,7 @@ export default new Vuex.Store({
   mutations: {
     SOCKET_CONNECT(state, status) {
       state.connected = true;
-      console.log("Websocket connected.");
+      console.log("Websocket connected.",Vue.prototype);
     },
     SOCKET_DISCONNECT(state, status) {
       state.connected = false;
@@ -118,8 +121,22 @@ export default new Vuex.Store({
         () => commit(state.connected ? "SOCKET_DISCONNECT" : "SOCKET_CONNECT"),
         500
       );
-    }
-  },
+    },
+    emitSocket({state, commit}, args) {
+          return new Promise((res, rej) => {
+            let tout = setTimeout(() => rej(new Error("Timeout SocketIo Response to " + args.event + ": " + args.payload), (tout = null)),
+              5000
+            );
+            console.log(args.event, ...args.payload);
+            Vue.prototype.$socket.client.emit(args.event, ...args.payload, (err, result) => {
+              if (tout) clearTimeout(tout);
+              else return rej("Timeout");
+              if (err || !result) rej(err ? err : "No result");
+              else res(result);
+            });
+          });
+        },
+      },
   getters: {
     //    connected: state => state.connected,
     format: state => state.formatConf,

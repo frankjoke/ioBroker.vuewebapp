@@ -17,16 +17,17 @@
             />
         </template>
         <fj-btn img="mdi-content-save" text="Save" :disabled="!changed" tooltip="Save config now"></fj-btn>
-        <fj-btn img="mdi-file-restore" text="Save+close" tooltip="Save and close config"></fj-btn>
+        <fj-btn img="mdi-file-restore" :disabled="!changed" text="Save+close" tooltip="Save and close config"></fj-btn>
         <fj-btn img="mdi-download" tooltip="Download config to file"></fj-btn>
         <fj-btn img="mdi-upload" tooltip="Upload config from file"></fj-btn>"
-        <fj-btn img="mdi-close" text="cancel" @click="close" tooltip="Close and cancel edit"></fj-btn>
+        <fj-btn img="mdi-0close" text="cancel" @click="close" tooltip="Close and cancel edit"></fj-btn>
+        <fj-btn :img="(connected?'mdi-lan-disconnect':'mdi-lan-connect')" :tooltip="(!connected?'connect':'disconnect') "@click="actionConnected(!connected)"></fj-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-content>
       <v-container fluid pa-2>
         <v-layout row wrap>
-          <template v-for="(item,index) in display">
+          <template v-for="(item,index) in menu[menuitem].entries">
             <fj-config-item :config="config" :format="item" :key="index"></fj-config-item>
           </template>
         </v-layout>
@@ -38,6 +39,7 @@
 
 <script>
 //import attrsMixin from "../mixins/attrs";
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: "fj-config",
@@ -74,11 +76,12 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["actionConnected"]),
     checkConf() {
       let newconf = JSON.stringify(this.config);
-      console.log(this.oldconf);
-      console.log(newconf);
-      this.changed = newconf != this.oldconf;
+      // console.log(this.oldconf);
+      // console.log(newconf);
+      this.$store.state.changed = this.changed = newconf != this.oldconf;
     },
     close() {
       //      window.close();
@@ -92,10 +95,7 @@ export default {
     }
   },
   computed: {
-    display() {
-      return this.menu[this.menuitem].entries;
-    }
-    //    ...mapGetters(["connected"])
+    ...mapState(["connected","lang"]),
   },
   watch: {
     config: {
@@ -103,7 +103,7 @@ export default {
         console.log("something changed");
         this.$nextTick(() => this.checkConf());
         //        this.$emit("changed", true);
-        this.$store.state.changed = true;
+//        this.$store.state.changed = true;
       },
 
       deep: true

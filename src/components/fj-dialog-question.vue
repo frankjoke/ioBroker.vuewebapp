@@ -1,18 +1,18 @@
 <template>
   <v-dialog v-model="show" :max-width="maxwidth">
     <v-card>
-      <v-card-title class="headline">{{value}}</v-card-title>
+      <v-card-title class="headline">{{value | tt}}</v-card-title>
       <v-card-text>
         <slot></slot>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn v-if="!!ok" small color="error" text="text" @click.stop="clicked(true)">
-          {{ok}}
+          {{ok | tt}}
           <v-icon right small>{{iconok}}</v-icon>
         </v-btn>
         <v-btn v-if="!!cancel" small color="primary" text="text" @click.stop="clicked(false)">
-          {{cancel}}
+          {{cancel | tt}}
           <v-icon right small>{{iconcancel}}</v-icon>
         </v-btn>
       </v-card-actions>
@@ -53,6 +53,9 @@ export default {
       if (what) this.$emit("Ok", true);
       this.show = false;
     }
+  },
+  computed: {
+
   },
   watch: {
     value(newv, oldv) {

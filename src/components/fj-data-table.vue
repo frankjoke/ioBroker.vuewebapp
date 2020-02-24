@@ -42,11 +42,12 @@
 
 <script>
 import attrsMixin from "../mixins/attrs";
-import helper from "./helper";
+import helperMixin from "../mixins/helper";
+//import helper from "./helper";
 
 export default {
   name: "fj-data-table",
-  mixins: [attrsMixin],
+  mixins: [attrsMixin, helperMixin],
   props: {
     items: { type: Array, required: true },
     columns: { type: Array, required: false },
@@ -127,7 +128,7 @@ export default {
     if (!Array.isArray(cols)) {
       if (this.items.length) {
         let v = this.items[0];
-        cols = Object.keys(v).map(k => helper.getFormat(v[k], { value: k }));
+        cols = Object.keys(v).map(k => this.getFormat(v[k], { value: k }));
       } else cols = [{ value: "No Data" }];
     }
     this.icolumns = cols.map((item, index) => {
@@ -140,7 +141,7 @@ export default {
       let i = Object.assign({}, item);
       if (edit) i.edit = true;
       if (candelete) i.candelete = true;
-      if (!i.text && i.value) i.text = helper.startCase(i.value);
+      if (!i.text && i.value) i.text = this.startCase(i.value);
       i.sortable = false;
       return i;
     });
@@ -150,8 +151,8 @@ export default {
         sortable: false,
         width: "1%"
       });
-    console.log(this.icolumns);
-    console.log(this.items);
+    // console.log(this.icolumns);
+    // console.log(this.items);
     //    this.snackShow("Started.");
   }
 };

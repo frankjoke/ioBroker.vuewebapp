@@ -13,8 +13,9 @@ import FjDataObject from "./components/fj-data-object";
 import FjDataItem from "./components/fj-data-item";
 
 import io from "socket.io-client";
-import VueSocketio from "vue-socket.io-extended";
+import VueSocketIoExt from "vue-socket.io-extended";
 //import FjSocketio from "./components/fj-socketio";
+import filters from "./plugins/filters.js";
 
 Vue.prototype.$filters = Vue.options.filters;
 
@@ -30,26 +31,12 @@ Vue.component("FjDataObject", FjDataObject);
 Vue.component("FjConfig", FjConfig);
 Vue.component("FjConfigItem", FjConfigItem);
 
-Vue.filter("capitalize", function(value) {
-  if (!value) return "";
-  value = value.toString();
-  return value.charAt(0).toUpperCase() + value.slice(1);
-});
-
-Vue.filter("startcase", function(value) {
-  if (!value) return "";
-  value = value.toString();
-  return value
-    .replace(/[_\-]+/g, " ")
-    .replace(/([a-z])([A-Z])/g, (str, $1, $2) => $1 + " " + $2)
-    .replace(/(\s|^)(\w)/g, (str, $1, $2) => $1 + $2.toUpperCase());
-});
-
+/* 
 const GetSockets = {
   install: function(Vue, options = {}) {
-    console.log("install send event:", options);
+    // console.log("install send event:", options);
     Vue.prototype.$ioemit = function(ev, ...data) {
-      console.log("send event:", ev, ...data);
+      // console.log("send event:", ev, ...data);
       return new Promise((res, rej) => {
         let tout = setTimeout(
           () =>
@@ -68,9 +55,11 @@ const GetSockets = {
     if (options.store) options.store.$ioemit = Vue.prototype.$ioemit;
   }
 };
-
-Vue.use(VueSocketio, io("ws://vmraspi:8081"), { store });
-Vue.use(GetSockets, { store });
+ */
+Vue.use(VueSocketIoExt, io("ws://vmraspi:8081"), { store });
+//Vue.use(GetSockets, { store });
+Vue.prototype.$store = store;
+filters.install();
 
 new Vue({
   store,
