@@ -1,7 +1,7 @@
 <template>
-  <fj-config title="MyTestadapter" image="logo.svg" :config="config" :format="format">
+  <fj-config title="MyTestadapter" image="logo.svg" :config="config" :format="format" :language="redraw">
     <v-layout row>
-      <v-flex sm1>
+      <v-flex sm2>
         <fj-btn :text="'test' | tt(2,1)" @click="pressed" img="mdi-lan-check" tooltip="Teste emit"></fj-btn>
       </v-flex>
       <v-flex sm3>
@@ -9,13 +9,14 @@
           text="Button"
           img="logo.png"
           @click="actionConnected(!connected)"
-          :tooltip='"Translate me later!" | tt'
+          tooltip="Translate me later!"
         ></fj-btn>
       </v-flex>
       <v-flex sm3>
-        <v-btn color="primary" @click="actionConnected(!connected)">
-          mdi-cancel
-          <v-icon small>mdi-cancel</v-icon>
+        <v-btn color="primary" @click="setLang('de')">
+          set lang to {{ lang==='de' ? 'en' : 'de'}}  
+          <v-icon small>mdi-cancel</v-icon>vue ui
+          
         </v-btn>
       </v-flex>
       <v-flex sm1>
@@ -30,12 +31,13 @@
     </v-layout>
     <!--     <fj-data-table :items="items" :columns="columns" label="myData Table" class="elevation-1" />
     <fj-data-object :item="items[0]" :attributes="columns"></fj-data-object>-->
+    {{lang}}, {{changed}},  {{connected}}, {{toadd}} 
   </fj-config>
 </template>
 
 <script>
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { mapMutations } from "vuex";
 
 import {FjConfig, FjBtn, FjIcon} from "./components/fj-components.js";
 import { mapGetters, mapActions, mapState } from "vuex";
@@ -48,80 +50,26 @@ export default {
   components: {  FjConfig, FjBtn, FjIcon },
   data() {
     return {
-      /*
-       columns: [
-        {
-          name: "ScolumnA",
-          value: "a",
-          type: "chips",
-          edit: false,
-          select: "a,b,c,d",
-          autoGrow: true,
-          placeholder: "placeholder",
-          sm4: true
-        },
-        {
-          name: "NcolumnA",
-          value: "aa",
-          type: "number",
-          width: "10%",
-          //          default: 10,
-          rules: [v => !isNaN(Number(v)) || "Not a number!"],
-          xs3: true,
-          "offset-xs1": true,
-          placeholder: "Numbers in seconds"
-        },
-        {
-          name: "Bool",
-          value: "b",
-          type: "boolean",
-          width: "2%",
-          sm3: true,
-          //          dark: true,
-          color: "success",
-
-          sortable: false
-        },
-        {
-          name: "Switch",
-          value: "bb",
-          type: "switch",
-          sm3: true,
-          default: false,
-          //          dark: true,
-          color: "success"
-        },
-        {
-          name: "C%",
-          value: "c",
-          width: "10%",
-          sm3: true,
-          label: "LabelS",
-          placeholder: "Teset"
-        },
-        {
-          name: "Select",
-          value: "s",
-          select: ["one", "two", "three"],
-          chips: true,
-          sm3: true,
-          width: "20%"
-        }
-      ],
-      items: [
-        { a: [1111], aa: 1, b: true, bb: true, c: "t3", s: ["two"] },
-        { a: [], aa: 1, b: 5, bb: true, c: 6 },
-        { a: [], aa: 1, b: false, bb: true, c: 6 }
-      ],
- */
-      //      changed: false
+      toadd: null
     };
   },
   methods: {
     ...mapActions(["actionConnected", "emitSocket"]),
+    ...mapMutations(["langMutation","toAdd"]),
     emit(event, ...payload) {
       return this.emitSocket({ event, payload });
     },
+    
+    setLang() {
+      console.log("set lang to de!");
+//      debugger;
+      this.langMutation(this.lang ==="de" ? "en" : "de");
+      this.toAdd(this.toadd = this.toAddDictionary());
+      this.reRender();
+    },
+    reRender(){
+        this.$forceUpdate()
+     },
     pressed() {
       // this.$socket.emit("getObject", "system.adapter.bmw.0", (err, data) =>
       //   console.log(err, data)
@@ -154,15 +102,18 @@ export default {
   },
   mounted() {
     //    this.sockets.subscribe("getObject", data => {
-          console.log(Vue.prototype);
-          console.log(this.$store);
+    //    console.log(Vue.prototype);
+    //    console.log(this.$store);
     //    });
   },
   computed: {
     ...mapGetters(["format", "config"]),
     //    ...mapState({ config: "conf"}),
-    ...mapState(["connected", "lang", "changed"])
+    ...mapState(["connected", "lang", "changed"]),
     //    ...mapGetters(["connected"])
+   redraw() {
+     return this.lang + 'changed';
+   }
   }
 };
 </script>

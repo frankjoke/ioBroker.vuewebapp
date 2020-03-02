@@ -3,7 +3,8 @@
     <template v-slot:activator="{ on }">
       <v-btn
         :icon="!text"
-      v-on="on"
+        v-on="on"
+        style="margin-right: 5px; margin-left: 5px"
         @click="$emit('click')"
         :disabled="disabled"
         v-bind="next_attrs"
@@ -14,16 +15,17 @@
     </template>
     <span>{{tooltip | tt }}</span>
   </v-tooltip>
-        <v-btn v-else 
-        :icon="!text"
-        @click="$emit('click')"
-        :disabled="disabled"
-        v-bind="next_attrs"
-      >
-        <fj-icon v-if="!!img" :img="img" />
-        {{text | tt | beginsp}}
-      </v-btn>
-
+  <v-btn
+    v-else
+    :icon="!text"
+    style="right: 5px, left: 5px"
+    @click="$emit('click')"
+    :disabled="disabled"
+    v-bind="next_attrs"
+  >
+    <fj-icon v-if="!!img" :img="img" />
+    {{text | tt | beginsp}}
+  </v-btn>
 </template>
 
 <script>
@@ -53,11 +55,19 @@ export default {
     disabled: false
   },
   created() {
-    console.log(this);
+//    console.log(this);
     if (!Object.keys(this.this_attrs).length) this.this_attrs["bottom"] = true;
   }
 };
 </script>
 
 <style>
+.v-icon {
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+.v-image {
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+}
 </style>

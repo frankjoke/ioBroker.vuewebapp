@@ -1,10 +1,17 @@
+import 'typeface-roboto';
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
+import '@mdi/font/css/materialdesignicons.css';
+
 import Vue from "vue";
 //import "./plugins/vuetify";
+import * as FS from 'file-saver';
+
 import vuetify from "./plugins/vuetify";
 import App from "./App.vue";
 import store from "./store";
 import FjIcon from "./components/fj-icon";
 import FjBtn from "./components/fj-btn";
+//import FjFileloader from "./components/fj-fileloader";
 import FjConfig from "./components/fj-config";
 import FjConfigItem from "./components/fj-config-item";
 import FjDialogQuestion from "./components/fj-dialog-question";
@@ -18,12 +25,15 @@ import VueSocketIoExt from "vue-socket.io-extended";
 import filters from "./plugins/filters.js";
 
 Vue.prototype.$filters = Vue.options.filters;
+//Vue.prototype.$browser = browser;
+//Vue.prototype.$windows = windows;
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
 Vue.component("FjIcon", FjIcon);
 Vue.component("FjBtn", FjBtn);
+//Vue.component("FjFileloader", FjFileloader);
 Vue.component("FjDataItem", FjDataItem);
 Vue.component("FjDialogQuestion", FjDialogQuestion);
 Vue.component("FjDataTable", FjDataTable);
@@ -55,10 +65,11 @@ const GetSockets = {
     if (options.store) options.store.$ioemit = Vue.prototype.$ioemit;
   }
 };
+Vue.use(GetSockets, { store });
  */
 Vue.use(VueSocketIoExt, io("ws://vmraspi:8081"), { store });
-//Vue.use(GetSockets, { store });
 Vue.prototype.$store = store;
+Vue.prototype.$FS = FS;
 filters.install();
 
 new Vue({

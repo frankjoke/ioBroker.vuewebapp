@@ -4,24 +4,42 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    "upgrade-interactive": "npm-check --update"
+  },
+  "main": "background.js",
+  "dependencies_o": {
+    "core-js": "^3.6.4",
+    "typeface-open-sans": "0.0.75"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
-    "socket.io-client": "^2.3.0",
+    "file-saver": "^2.0.2",
+    "typeface-roboto": "0.0.75",
     "vue": "^2.6.11",
+    "socket.io-client": "^2.3.0",
     "vue-socket.io-extended": "^4.0.1",
-    "vuetify": "^2.0.0",
-    "vuex": "^3.1.2"
+    "vuetify": "^2.2.15",
+    "vuex": "^3.1.2",
+    "vuex-i18n": "^1.13.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.2.2",
-    "@vue/cli-plugin-vuex": "^4.2.2",
-    "@vue/cli-service": "^4.2.2",
-    "sass": "^1.25.0",
+    "@mdi/font": "^4.9.95",
+    "@vue/cli-plugin-babel": "^4.2.3",
+    "@vue/cli-plugin-vuex": "^4.2.3",
+    "@vue/cli-service": "^4.2.3",
+    "electron": "^6.0.0",
+    "electron-builder": "^22.3.2",
+    "material-design-icons-iconfont": "^5.0.1",
+    "npm-check": "^5.9.2",
+    "sass": "^1.26.2",
     "sass-loader": "^8.0.2",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.1",
+    "vue-cli-plugin-electron-builder": "^1.4.5",
     "vue-cli-plugin-vuetify": "~2.0.5",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.4.3"
