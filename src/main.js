@@ -1,6 +1,6 @@
 import 'typeface-roboto';
-import 'material-design-icons-iconfont/dist/material-design-icons.css';
-import '@mdi/font/css/materialdesignicons.css';
+// import 'material-design-icons-iconfont/dist/material-design-icons.css';
+//import '@mdi/font/css/materialdesignicons.css';
 
 import Vue from "vue";
 //import "./plugins/vuetify";
@@ -21,12 +21,9 @@ import FjDataItem from "./components/fj-data-item";
 
 import io from "socket.io-client";
 import VueSocketIoExt from "vue-socket.io-extended";
-//import FjSocketio from "./components/fj-socketio";
 import filters from "./plugins/filters.js";
 
 Vue.prototype.$filters = Vue.options.filters;
-//Vue.prototype.$browser = browser;
-//Vue.prototype.$windows = windows;
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;

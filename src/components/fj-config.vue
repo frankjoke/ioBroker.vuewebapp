@@ -194,13 +194,12 @@ export default {
     download(what) {
       if (!what) what = this.config;
       if (!what) what = { error: "No config!" };
-      console.log(this.$FS);
+//      console.log(this.$FS);
       const blob = new Blob([JSON.stringify(what, null, 2)], {
         type: "application/json;charset=utf-8"
       });
       this.$FS.saveAs(blob, "config.json");
     },
-    upload(what) {}
   },
   computed: {
     ...mapState(["connected", "lang"]),

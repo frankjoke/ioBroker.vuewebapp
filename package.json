@@ -18,31 +18,31 @@
   },
   "dependencies": {
     "file-saver": "^2.0.2",
+    "socket.io-client": "^2.3.0",
     "typeface-roboto": "0.0.75",
     "vue": "^2.6.11",
-    "socket.io-client": "^2.3.0",
-    "vue-socket.io-extended": "^4.0.1",
-    "vuetify": "^2.2.15",
-    "vuex": "^3.1.2",
+    "vue-socket.io-extended": "^4.0.3",
+    "vuetify": "^2.2.33",
+    "vuex": "^3.4.0",
     "vuex-i18n": "^1.13.1"
   },
   "devDependencies": {
     "@mdi/font": "^4.9.95",
-    "@vue/cli-plugin-babel": "^4.2.3",
-    "@vue/cli-plugin-vuex": "^4.2.3",
-    "@vue/cli-service": "^4.2.3",
+    "@vue/cli-plugin-babel": "^4.4.1",
+    "@vue/cli-plugin-vuex": "^4.4.1",
+    "@vue/cli-service": "^4.4.1",
     "electron": "^6.0.0",
     "electron-builder": "^22.3.2",
     "material-design-icons-iconfont": "^5.0.1",
     "npm-check": "^5.9.2",
-    "sass": "^1.26.2",
+    "sass": "^1.26.8",
     "sass-loader": "^8.0.2",
     "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.1",
-    "vue-cli-plugin-electron-builder": "^1.4.5",
+    "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-electron-builder": "^1.4.6",
     "vue-cli-plugin-vuetify": "~2.0.5",
     "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.4.3"
+    "vuetify-loader": "^1.4.4"
   },
   "postcss": {
     "plugins": {
